@@ -26,10 +26,11 @@ Need the full offline Node.js CLI (`mcpshield scan / fix / lock / annex4 / risk-
 
 - **Pro Developer License (£49 / $59 one-time):** Zero recurring SaaS fees. Offline CLI + auto-hardener + SARIF CI gate + Annex IV generator.
 - **Team & Agency Audit Pack (£149 / $179 one-time):** Unlimited repositories & engineers + Board/CISO Executive Risk Register exporter + all 6 compliance templates + client audit rights.
+- **Checkout:** [https://polar.sh/mcpsheild1](https://polar.sh/mcpsheild1)
 
 ---
 
 ## Support & Community
 
-- **Bug Reports & Rule Requests:** [GitHub Issues](https://github.com/BenJackson111/mcpshield/issues)
+- **Bug Reports & Rule Requests:** [GitHub Issues](https://github.com/BenJackson111/mcpshield/issues) · [support@mcpshield.bid](mailto:support@mcpshield.bid)
 - **Q&A & Architecture Discussions:** [GitHub Discussions](https://github.com/BenJackson111/mcpshield/discussions)
