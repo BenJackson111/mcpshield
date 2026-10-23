@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EU AI Act Annex IV Technical Documentation Guide for MCP &amp; AI Agents (2026) — MCPShield</title>
+  <meta name="description" content="How software teams map Model Context Protocol (MCP) servers and AI agents to EU AI Act Articles 9, 11, 12, 14, 15, and Annex IV technical documentation requirements." />
+  <link rel="canonical" href="https://mcpshield.bid/guides/eu-ai-act-annex-iv-mcp-guide.html" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a href="/" class="brand">🛡️ MCPShield</a>
+      <nav class="nav-links">
+        <a href="/#auditor">Live Auditor</a>
+        <a href="/#pricing">Get Annex IV Generator (£49)</a>
+        <a href="https://github.com/BenJackson111/mcpshield/issues" target="_blank" rel="noopener">Support (GitHub Issues)</a>
+        <a href="mailto:support@mcpshield.bid">support@mcpshield.bid</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <article class="guide-article">
+      <h1>EU AI Act Annex IV Technical Documentation Guide for AI Agents &amp; MCP Gateways</h1>
+      <p style="color:var(--text-muted);">Updated October 2026 (Post-August 2, 2026 EU AI Act Enforcement)</p>
+
+      <h2>Mapping Engineering Controls to EU AI Act Articles</h2>
+      <p>Following the August 2, 2026 enforcement milestone of Regulation (EU) 2024/1689, enterprise buyers and regulators require verifiable technical documentation demonstrating risk management, supply-chain provenance, human oversight, and automatic logging.</p>
+      <pre><code>Article 9  (Risk Management System)    -> Continuous CI scanning via mcpshield scan --fail-on high
+Article 10 (Data Governance)           -> Read-only database MCP connectors (MCP10) + GDPR Art. 35 DPIA
+Article 11 &amp; Annex IV (Documentation)  -> Automated Annex IV Dossier + SHA-256 mcp-lock.json provenance
+Article 12 &amp; Art. 26(6) (Logging)      -> 180-day structured auditLog retention with secret redaction (MCP08)
+Article 14 (Human Oversight)           -> Removal of wildcard autoApprove; explicit approval cards (MCP06)
+Article 15 (Cybersecurity &amp; Robustness)-> Secret isolation (MCP01), strict JSON schemas (MCP03), TLS 1.3 (MCP07)</code></pre>
+
+      <h2>Generate Your Annex IV Dossier in One Command</h2>
+      <pre><code>node ./bin/mcpshield.mjs annex4 ./mcp.json \
+  --org "Acme Technologies Ltd" \
+  --system "Production AI Support Gateway" \
+  --output ./ANNEX_IV_DOSSIER.md</code></pre>
+      <p style="margin-top:1.5rem;"><a href="/#auditor" class="btn btn-primary">Audit Your Config &amp; Preview Annex IV Compliance →</a></p>
+    </article>
+  </main>
+  <script src="/assets/analytics.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MCPShield — OWASP MCP Top 10 Security Scanner &amp; EU AI Act Annex IV Compliance Toolkit</title>
+  <meta name="description" content="Audit, harden, and certify your Model Context Protocol (MCP) servers and AI agents in 10 seconds. 100% offline OWASP MCP Top 10:2025 scanner, cryptographic lockfile generator, and EU AI Act Annex IV compliance toolkit." />
+  <meta property="og:title" content="MCPShield — OWASP MCP Top 10 &amp; EU AI Act Annex IV Compliance Toolkit" />
+  <meta property="og:description" content="Free client-side MCP config risk auditor + one-time offline CLI, SARIF CI/CD gate, and auditor-ready EU AI Act Annex IV technical documentation generator." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mcpshield.bid/" />
+  <link rel="canonical" href="https://mcpshield.bid/" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "MCPShield",
+    "url": "https://mcpshield.bid/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Linux, macOS, Windows",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Free Browser Diagnostic & Starter Kit",
+        "price": "0.00",
+        "priceCurrency": "GBP"
+      },
+      {
+        "@type": "Offer",
+        "name": "MCPShield Pro Developer License",
+        "price": "49.00",
+        "priceCurrency": "GBP"
+      },
+      {
+        "@type": "Offer",
+        "name": "MCPShield Team & Agency Audit Pack",
+        "price": "149.00",
+        "priceCurrency": "GBP"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a href="/" class="brand">
+        <span>🛡️ MCPShield</span>
+        <span class="brand-badge">OWASP MCP Top 10 + EU AI Act 2026</span>
+      </a>
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="#auditor">Live Auditor</a>
+        <a href="#pricing">Pricing (£0 / £49 / £149)</a>
+        <a href="/guides/owasp-mcp-top-10-checklist.html">OWASP MCP Guide</a>
+        <a href="/guides/eu-ai-act-annex-iv-mcp-guide.html">EU AI Act Annex IV</a> •
+        <a href="https://github.com/BenJackson111/mcpshield/issues" target="_blank" rel="noopener">GitHub Issues Support</a> •
+        <a href="mailto:support@mcpshield.bid">support@mcpshield.bid</a> •
+        <a href="https://github.com/BenJackson111/mcpshield/discussions" target="_blank" rel="noopener">Discussions</a>
+        <a href="/guides/hardening-cursor-claude-mcp-json.html">Cursor &amp; Claude Hardening</a>
+        <a href="https://github.com/BenJackson111/mcpshield/issues" target="_blank" rel="noopener">Support (GitHub Issues)</a> •
+        <a href="mailto:support@mcpshield.bid">support@mcpshield.bid</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Audit, Harden &amp; Certify Your MCP Servers in 10 Seconds</h1>
+      <p class="subtitle">
+        Deterministic <strong>OWASP MCP Top 10:2025</strong> security scanning, automatic secret &amp; schema remediation, cryptographic <code>mcp-lock.json</code> baselines, and auditor-ready <strong>EU AI Act Annex IV</strong> technical documentation. 100% offline. Zero recurring SaaS fees.
+      </p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="#auditor" class="btn btn-primary">Run Free Browser Diagnostic</a>
+        <a href="/releases/mcpshield-starter-v1.0.0.tar.gz" class="btn btn-secondary">Download Free Starter Kit (.tar.gz)</a>
+        <a href="#pricing" class="btn btn-secondary">Get Pro CLI &amp; Annex IV Pack (£49)</a>
+      </div>
+    </section>
+
+    <section id="auditor" aria-label="Interactive MCP Configuration Security Auditor">
+      <div class="workbench">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <strong>1. Paste <code>mcp.json</code> / <code>.cursor/mcp.json</code></strong>
+              <div style="font-size:0.78rem;color:var(--text-muted);">100% Client-Side Execution — Zero secrets leave your browser</div>
+            </div>
+            <div style="display:flex;gap:0.5rem;">
+              <button type="button" id="btn-preset-vuln" class="btn btn-secondary" style="padding:0.35rem 0.65rem;font-size:0.78rem;">Load Vulnerable Preset</button>
+              <button type="button" id="btn-preset-clean" class="btn btn-secondary" style="padding:0.35rem 0.65rem;font-size:0.78rem;">Load Compliant Preset</button>
+            </div>
+          </div>
+          <label for="mcp-config-editor" style="display:none;">MCP JSON Configuration</label>
+          <textarea id="mcp-config-editor" class="code-input" spellcheck="false"></textarea>
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+            <button type="button" id="btn-run-scan" class="btn btn-primary">Scan Configuration Now</button>
+            <button type="button" id="btn-auto-harden" class="btn btn-secondary">✨ Auto-Harden to 100/100 (Grade A+)</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <strong>2. OWASP MCP Top 10 &amp; EU AI Act Diagnostic Report</strong>
+            <span class="badge badge-pass">Deterministic Engine v1.0.0</span>
+          </div>
+          <div class="score-banner">
+            <div>
+              <div style="font-size:0.8rem;color:var(--text-muted);text-transform:uppercase;">Security &amp; Compliance Score</div>
+              <div id="audit-status-label" style="font-size:0.9rem;font-weight:600;">Evaluating configuration...</div>
+            </div>
+            <div id="audit-score-value" class="score-number">--/100</div>
+          </div>
+          <div id="audit-findings-list" class="finding-list" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" aria-label="Pricing and Licensing">
+      <h2 style="text-align:center;font-size:2rem;margin-bottom:0.5rem;">One-Time Purchase. Zero Recurring SaaS Subscriptions.</h2>
+      <p style="text-align:center;color:var(--text-muted);max-width:700px;margin:0 auto 2rem;">
+        Replace €348–€1,188/year recurring compliance SaaS and £2,500+ manual MCP security reviews with a deterministic, offline engineering toolkit you own forever.
+      </p>
+
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div>
+            <span class="badge badge-medium">Free Forever</span>
+            <h3 style="margin-top:0.75rem;font-size:1.35rem;">Starter &amp; Web Auditor</h3>
+            <div class="price-tag">£0</div>
+            <p style="color:var(--text-muted);font-size:0.9rem;">Instant client-side diagnostic and sample templates for solo evaluation.</p>
+            <ul>
+              <li>100% Client-Side Browser Risk Scorer</li>
+              <li>OWASP MCP01–MCP10 Live Detection</li>
+              <li>Sample Vulnerable &amp; Hardened Configs</li>
+              <li>2 Starter Markdown Policy Templates</li>
+            </ul>
+          </div>
+          <a href="/releases/mcpshield-starter-v1.0.0.tar.gz" class="btn btn-secondary">Download Free Starter (.tar.gz)</a>
+        </div>
+
+        <div class="price-card featured">
+          <div>
+            <span class="badge badge-pass">Most Popular • Solo &amp; Startup</span>
+            <h3 style="margin-top:0.75rem;font-size:1.35rem;">MCPShield Pro License</h3>
+            <div class="price-tag">£49 <span style="font-size:0.9rem;font-weight:400;color:var(--text-muted);">one-time</span></div>
+            <p style="color:var(--text-muted);font-size:0.9rem;">Full offline Node.js CLI, auto-hardener, CI/CD SARIF gate, and Annex IV generator.</p>
+            <ul>
+              <li><code>mcpshield scan / fix / lock / sarif</code> CLI</li>
+              <li>1-Command <code>mcpshield annex4</code> Dossier Generator</li>
+              <li>Cryptographic SHA-256 <code>mcp-lock.json</code> Baseline</li>
+              <li>GitHub Actions SARIF v2.1.0 CI Workflow</li>
+              <li>Offline Cryptographic License Key</li>
+            </ul>
+          </div>
+          <a href="https://polar.sh/mcpsheild1" class="btn btn-primary" data-tier="PRO" target="_blank" rel="noopener">Buy Pro License — £49</a>
+        </div>
+
+        <div class="price-card">
+          <div>
+            <span class="badge badge-high">Enterprise &amp; Consultancies</span>
+            <h3 style="margin-top:0.75rem;font-size:1.35rem;">Team &amp; Agency Audit Pack</h3>
+            <div class="price-tag">£149 <span style="font-size:0.9rem;font-weight:400;color:var(--text-muted);">one-time</span></div>
+            <p style="color:var(--text-muted);font-size:0.9rem;">Unlimited repositories, Board Risk Register generator, and all 6 CISO/DPIA templates.</p>
+            <ul>
+              <li>Unlimited Engineers &amp; CI/CD Pipelines</li>
+              <li><code>mcpshield risk-register</code> Board/CISO Exporter</li>
+              <li>All 6 EU AI Act Annex IV, ISO 42001 &amp; GDPR Art. 35 DPIA Templates</li>
+              <li>Commercial Client Audit Rights Included</li>
+            </ul>
+          </div>
+          <a href="https://polar.sh/mcpsheild1" class="btn btn-secondary" data-tier="TEAM" target="_blank" rel="noopener">Buy Team &amp; Agency Pack — £149</a>
+        </div>
+      </div>
+
+      <div id="sandbox-checkout-notice" class="panel" style="margin-bottom:3rem;">
+        <strong>🔒 Pre-Launch Sandbox Checkout Status:</strong>
+        <p style="color:var(--text-muted);font-size:0.92rem;">
+          Buy Pro and Team licenses at <a href="https://polar.sh/mcpsheild1" target="_blank" rel="noopener">https://polar.sh/mcpsheild1</a>. Automated webhook fulfillment (HMAC-SHA256 verification + instant Ed25519 offline license issuance + signed bundle delivery) is built and verified for <strong>Polar.sh</strong>, <strong>Lemon Squeezy</strong>, and <strong>Stripe Payment Links</strong> (£0/month upfront). Live payment collection activates immediately upon owner approval of the isolated merchant account.
+        </p>
+      </div>
+    </section>
+
+    <section aria-label="Technical Compliance Guides" style="margin-bottom:3rem;">
+      <h2 style="font-size:1.6rem;margin-bottom:1rem;">Engineering &amp; Regulatory Compliance Guides</h2>
+      <div class="pricing-grid">
+        <div class="panel">
+          <h3><a href="/guides/owasp-mcp-top-10-checklist.html">OWASP MCP Top 10:2025 Engineering Checklist</a></h3>
+          <p style="color:var(--text-muted);font-size:0.9rem;">Deep dive into preventing Token Exposure (MCP01), Tool Poisoning (MCP03), Supply Chain Drift (MCP04), and Command Injection (MCP05).</p>
+        </div>
+        <div class="panel">
+          <h3><a href="/guides/eu-ai-act-annex-iv-mcp-guide.html">EU AI Act Annex IV Developer Guide (2026)</a></h3>
+          <p style="color:var(--text-muted);font-size:0.9rem;">How to map Model Context Protocol servers to EU AI Act Articles 9, 11, 12, 14, 15, and 50 with automated technical evidence.</p>
+        </div>
+        <div class="panel">
+          <h3><a href="/guides/hardening-cursor-claude-mcp-json.html">Hardening Cursor &amp; Claude Desktop MCP Configs</a></h3>
+          <p style="color:var(--text-muted);font-size:0.9rem;">Step-by-step playbook for locking down <code>.cursor/mcp.json</code> and <code>claude_desktop_config.json</code> across engineering teams.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+      <div>
+        <strong>MCPShield by Midas Labs</strong> • 100% Zero-Telemetry Offline Security &amp; Compliance Engineering.<br />
+        <span>Privacy-First: Cookieless analytics respecting Do Not Track (DNT) &amp; Global Privacy Control (GPC).</span>
+      </div>
+      <div>
+        <a href="/sitemap.xml">Sitemap</a> •
+        <a href="/guides/owasp-mcp-top-10-checklist.html">OWASP MCP Top 10</a> •
+        <a href="/guides/eu-ai-act-annex-iv-mcp-guide.html">EU AI Act Annex IV</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/analytics.js" defer></script>
+  <script src="/assets/app.js" defer></script>
+</body>
+</html>

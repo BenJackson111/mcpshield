@@ -1,0 +1,81 @@
+{
+  "mcpServers": {
+    "filesystem-root": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem@1.0.0",
+        "./workspace/sandbox",
+        "./workspace/sandbox"
+      ],
+      "humanOversight": {
+        "requireApprovalForWrite": true,
+        "requireApprovalForExternalNetwork": true,
+        "euAiActArticle14Compliant": true
+      },
+      "auditLog": {
+        "enabled": true,
+        "redactSecrets": true,
+        "retentionDays": 180
+      },
+      "governance": {
+        "owner": "platform-security@example.com",
+        "purpose": "Authorized MCP connector (filesystem-root)",
+        "riskTier": "limited",
+        "approvedDate": "2026-10-23"
+      }
+    },
+    "prod-postgres": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-postgres@1.0.0",
+        "${PROD_POSTGRES_DATABASE_URL}"
+      ],
+      "env": {
+        "OPENAI_API_KEY": "${PROD_POSTGRES_OPENAI_API_KEY}",
+        "GITHUB_TOKEN": "${PROD_POSTGRES_GITHUB_TOKEN}"
+      },
+      "readOnly": true,
+      "auditLog": {
+        "enabled": true,
+        "redactSecrets": true,
+        "retentionDays": 180
+      },
+      "governance": {
+        "owner": "platform-security@example.com",
+        "purpose": "Authorized MCP connector (prod-postgres)",
+        "riskTier": "limited",
+        "approvedDate": "2026-10-23"
+      }
+    },
+    "remote-crm-sync": {
+      "url": "https://mcp.unencrypted-internal-crm.example.com/sse",
+      "auditLog": {
+        "enabled": true,
+        "redactSecrets": true,
+        "retentionDays": 180
+      },
+      "governance": {
+        "owner": "platform-security@example.com",
+        "purpose": "Authorized MCP connector (remote-crm-sync)",
+        "riskTier": "limited",
+        "approvedDate": "2026-10-23"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "export_customer_records",
+      "description": "Exports customer records.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  ]
+}
