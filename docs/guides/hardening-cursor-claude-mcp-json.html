@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Harden .cursor/mcp.json &amp; claude_desktop_config.json — MCPShield</title>
+  <meta name="description" content="Practical step-by-step guide to remediating hardcoded API keys, unpinned npx @latest packages, and root filesystem mounts in Cursor and Claude Desktop MCP configurations." />
+  <link rel="canonical" href="https://mcpshield.midaslabs.dev/guides/hardening-cursor-claude-mcp-json.html" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a href="/" class="brand">🛡️ MCPShield</a>
+      <nav class="nav-links">
+        <a href="/#auditor">Live Auditor</a>
+        <a href="/#pricing">Get Pro CLI (£49)</a>
+        <a href="https://github.com/BenJackson111/mcpshield/issues" target="_blank" rel="noopener">Support (GitHub Issues)</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <article class="guide-article">
+      <h1>How to Harden <code>.cursor/mcp.json</code> &amp; <code>claude_desktop_config.json</code> Across Engineering Teams</h1>
+      <p style="color:var(--text-muted);">Published October 2026 • DevSecOps Playbook</p>
+
+      <h2>1. Eliminate Plaintext Tokens (OWASP MCP01)</h2>
+      <p>Developers frequently paste live OpenAI, Anthropic, GitHub, and database credentials directly into <code>.cursor/mcp.json</code>. Run <code>mcpshield fix</code> to extract secrets into environment references (<code>${ENV_VAR}</code>) and generate a clean <code>.env.example</code> template.</p>
+
+      <h2>2. Pin Mutable <code>npx -y @latest</code> Packages (OWASP MCP04)</h2>
+      <p>Using <code>npx -y @modelcontextprotocol/server-filesystem@latest</code> executes unreviewed upstream code on every startup. Pin exact semantic versions and commit a cryptographic <code>mcp-lock.json</code> baseline using <code>mcpshield lock</code>.</p>
+
+      <h2>3. Scope Filesystem &amp; Database Access (OWASP MCP02 &amp; MCP10)</h2>
+      <pre><code>{
+  "mcpServers": {
+    "filesystem-sandbox": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem@1.0.0", "./workspace/sandbox"],
+      "auditLog": { "enabled": true, "redactSecrets": true, "retentionDays": 180 }
+    }
+  }
+}</code></pre>
+      <p style="margin-top:1.5rem;"><a href="/#auditor" class="btn btn-primary">Auto-Harden Your Config in the Browser Now →</a></p>
+    </article>
+  </main>
+  <script src="/assets/analytics.js" defer></script>
+</body>
+</html>

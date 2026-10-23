@@ -1,0 +1,17 @@
+{
+  "name": "mcpshield",
+  "version": "1.0.0",
+  "description": "Public MCPShield starter: client-side OWASP MCP Top 10 auditor, open rule catalog, and docs. Pro scan/fix/lock/annex4 commands are not included.",
+  "type": "module",
+  "license": "MIT",
+  "private": true,
+  "bin": {
+    "mcpshield": "./bin/mcpshield.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "mcpshield": "node bin/mcpshield.mjs"
+  }
+}

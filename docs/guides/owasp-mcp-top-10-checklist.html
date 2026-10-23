@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OWASP MCP Top 10 (2025/2026) Security Checklist for AI Engineers — MCPShield</title>
+  <meta name="description" content="Complete engineering implementation guide for the OWASP MCP Top 10:2025 controls (MCP01 through MCP10), including automated CI/CD SARIF scanning and cryptographic tool schema pinning." />
+  <link rel="canonical" href="https://mcpshield.midaslabs.dev/guides/owasp-mcp-top-10-checklist.html" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a href="/" class="brand">🛡️ MCPShield</a>
+      <nav class="nav-links">
+        <a href="/#auditor">Live Auditor</a>
+        <a href="/#pricing">Get Pro CLI (£49)</a>
+        <a href="https://github.com/BenJackson111/mcpshield/issues" target="_blank" rel="noopener">Support (GitHub Issues)</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <article class="guide-article">
+      <h1>OWASP MCP Top 10 (2025/2026) Security Checklist for AI &amp; Platform Engineers</h1>
+      <p style="color:var(--text-muted);">Published October 2026 • By Midas Labs Security Engineering</p>
+
+      <h2>Why Model Context Protocol (MCP) Configurations Are High-Value Targets</h2>
+      <p>Local and remote MCP servers execute with the permissions of the host developer workstation or production agent container. A single misconfigured <code>mcp.json</code> file can leak cloud credentials (<code>MCP01</code>), allow arbitrary shell execution (<code>MCP05</code>), or expose the agent to prompt-injected tool poisoning (<code>MCP03</code>).</p>
+
+      <h2>The 10 Mandatory OWASP MCP Controls</h2>
+      <pre><code>MCP01: Token Mismanagement &amp; Secret Exposure       -> Never store sk-*, ghp_*, or DB passwords in mcp.json
+MCP02: Privilege Escalation via Scope Creep        -> Never mount / or /etc; scope strictly to ./workspace/sandbox
+MCP03: Tool Poisoning &amp; Schema Integrity           -> Enforce additionalProperties: false &amp; SHA-256 schema locks
+MCP04: Software Supply Chain &amp; Unpinned Runners    -> Replace npx pkg@latest with exact versions &amp; mcp-lock.json
+MCP05: Command Injection &amp; Shell Wrappers          -> Remove sh -c / bash -c wrappers; invoke binaries directly
+MCP06: Intent Flow Subversion (Auto-Approve)       -> Prohibit autoApprove: ["*"]; enforce human-in-the-loop
+MCP07: Insufficient Auth &amp; Cleartext Transport     -> Require https:// TLS 1.3 and OAuth 2.1 with PKCE
+MCP08: Lack of Audit Logging &amp; Traceability        -> Enable 180-day redacted JSON audit logs (EU AI Act Art. 12)
+MCP09: Shadow MCP Servers                          -> Require governance owner/purpose metadata &amp; allowlist
+MCP10: Context Over-Sharing &amp; Unscoped DB Access   -> Enforce readOnly: true &amp; PII-masked database views</code></pre>
+
+      <h2>Automating Enforcement in GitHub Actions</h2>
+      <p>Run <code>mcpshield scan ./mcp.json --fail-on high</code> in your CI pipeline and upload the SARIF v2.1.0 artifact to GitHub Code Scanning to block non-compliant pull requests automatically.</p>
+      <p style="margin-top:1.5rem;"><a href="/#auditor" class="btn btn-primary">Test Your mcp.json in the Free Browser Auditor →</a></p>
+    </article>
+  </main>
+  <script src="/assets/analytics.js" defer></script>
+</body>
+</html>
